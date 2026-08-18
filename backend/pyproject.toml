@@ -1,0 +1,12 @@
+[project]
+name = "rah-e-ravaan-backend"
+version = "0.1.0"
+description = "Backend API for Rah-e-Ravaan"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+]
+
+[tool.uvicorn]
+factory = false

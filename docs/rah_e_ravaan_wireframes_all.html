@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rah-e-Ravaan — UX Wireframe Document</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --maroon: #6B1A1A; --maroon-light: rgba(107,26,26,.07); --maroon-mid: rgba(107,26,26,.15);
+  --lime: #7FB519; --lime-light: rgba(127,181,25,.12);
+  --s0: #F6F5F0; --s1: #EEEDE8; --s2: #FFFFFF;
+  --tp: #1A1A1A; --ts: #4A4A4A; --tm: #888888;
+  --bd: rgba(0,0,0,.11); --bds: rgba(0,0,0,.2);
+  --suc: #EAF3DE; --suct: #3B6D11; --sucb: #97C459;
+  --wrn: #FAEEDA; --wrnt: #854F0B; --wrnb: #EF9F27;
+  --dng: #FCEBEB; --dngt: #A32D2D; --dngb: #F09595;
+  --acc: #E6F1FB; --acct: #185FA5; --accb: #85B7EB;
+  --r: 6px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body { font-family: var(--font); background: #ECEAE3; color: var(--tp); min-height: 100vh; }
+
+/* ── LAYOUT ── */
+.page { display: flex; }
+
+/* ── SIDEBAR NAV ── */
+.doc-sidebar {
+  width: 220px; flex-shrink: 0; background: var(--maroon);
+  min-height: 100vh; position: sticky; top: 0; height: 100vh;
+  overflow-y: auto; display: flex; flex-direction: column; padding: 0 0 24px;
+}
+.doc-sidebar::-webkit-scrollbar { width: 4px; }
+.doc-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 2px; }
+.doc-logo { padding: 20px 16px 16px; border-bottom: 1px solid rgba(255,255,255,.12); }
+.doc-logo-main { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: .02em; }
+.doc-logo-sub { font-size: 10px; color: rgba(255,255,255,.45); margin-top: 3px; }
+.doc-nav-section { padding: 16px 0 4px; }
+.doc-nav-label { font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.35); padding: 0 16px 8px; }
+.doc-nav-item { display: flex; align-items: center; gap: 8px; padding: 7px 16px; font-size: 11px; color: rgba(255,255,255,.6); cursor: pointer; text-decoration: none; transition: background .15s; }
+.doc-nav-item:hover { background: rgba(255,255,255,.08); color: #fff; }
+.doc-nav-item.active { background: rgba(255,255,255,.13); color: #fff; font-weight: 600; }
+.doc-nav-item i { font-size: 15px; flex-shrink: 0; }
+.doc-nav-item .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.dot-customer { background: #7FB519; }
+.dot-organizer { background: #EF9F27; }
+.dot-admin { background: #85B7EB; }
+
+/* ── MAIN CONTENT ── */
+.doc-main { flex: 1; min-width: 0; padding: 32px 28px; }
+
+/* ── COVER ── */
+.cover {
+  background: var(--maroon); border-radius: 14px; padding: 40px 36px;
+  margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.cover::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: rgba(127,181,25,.15); pointer-events: none;
+}
+.cover::after {
+  content: ''; position: absolute; bottom: -60px; left: 30%;
+  width: 280px; height: 280px; border-radius: 50%;
+  background: rgba(255,255,255,.04); pointer-events: none;
+}
+.cover-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--lime); margin-bottom: 10px; }
+.cover-title { font-size: 30px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 8px; }
+.cover-title span { color: var(--lime); }
+.cover-sub { font-size: 13px; color: rgba(255,255,255,.55); margin-bottom: 22px; max-width: 500px; }
+.cover-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+.chip-green { background: var(--lime-light); color: var(--lime); border: 1px solid rgba(127,181,25,.3); }
+.chip-white { background: rgba(255,255,255,.1); color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.15); }
+
+/* ── SECTION HEADERS ── */
+.doc-section { margin-bottom: 48px; scroll-margin-top: 24px; }
+.section-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--tm); margin-bottom: 6px; }
+.section-title { font-size: 20px; font-weight: 700; color: var(--tp); margin-bottom: 4px; }
+.section-desc { font-size: 12px; color: var(--ts); margin-bottom: 22px; line-height: 1.5; }
+.section-rule { height: 2px; background: linear-gradient(90deg, var(--maroon), transparent); border-radius: 2px; margin-bottom: 22px; }
+
+/* ── ROLE BADGE ── */
+.role-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; margin-bottom: 16px; }
+.role-customer { background: var(--suc); color: var(--suct); }
+.role-organizer { background: var(--wrn); color: var(--wrnt); }
+.role-admin { background: var(--acc); color: var(--acct); }
+.role-auth { background: var(--maroon-light); color: var(--maroon); }
+
+/* ── SCREENS ROW ── */
+.screens-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 8px; }
+.screen-wrap { display: flex; flex-direction: column; }
+.screen-label { font-size: 10px; color: var(--tm); text-align: center; margin-top: 8px; font-weight: 500; }
+
+/* ── PHONE ── */
+.phone {
+  width: 190px; flex-shrink: 0; background: var(--s2);
+  border: 1.5px solid #C0BFB8; border-radius: 28px; overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 3px 16px rgba(0,0,0,.1), 0 1px 4px rgba(0,0,0,.06);
+}
+.phone-bar { height: 22px; background: var(--s1); display: flex; align-items: center; justify-content: center; }
+.phone-notch { width: 46px; height: 7px; border-radius: 4px; background: #C0BFBA; }
+.phone-screen { flex: 1; display: flex; flex-direction: column; min-height: 360px; }
+.phone-bottom { height: 22px; background: var(--s1); display: flex; align-items: center; justify-content: center; border-top: 1px solid var(--bd); }
+.phone-home { width: 46px; height: 4px; border-radius: 3px; background: #C0BFBA; }
+
+/* ── WEB BROWSER ── */
+.web {
+  background: var(--s2); border: 1.5px solid #C0BFB8; border-radius: 12px;
+  overflow: hidden; box-shadow: 0 3px 16px rgba(0,0,0,.08);
+}
+.web-bar { height: 34px; background: var(--s1); border-bottom: 1px solid var(--bd); display: flex; align-items: center; gap: 6px; padding: 0 12px; }
+.wd { width: 9px; height: 9px; border-radius: 50%; }
+.web-url { flex: 1; height: 20px; background: var(--s0); border: 1px solid var(--bd); border-radius: 5px; margin: 0 10px; display: flex; align-items: center; padding: 0 10px; }
+.web-url span { font-size: 10px; color: var(--tm); }
+
+/* ── COMMON SCREEN ELEMENTS ── */
+.sh { background: var(--maroon); padding: 10px 13px; display: flex; align-items: center; justify-content: space-between; }
+.sh span, .sh .logo { color: #fff; font-size: 12px; font-weight: 700; }
+.sh.lime { background: #3B6D11; }
+.sh.gray { background: var(--s1); border-bottom: 1px solid var(--bd); }
+.sh.gray span { color: var(--tp); }
+.sb { flex: 1; overflow: hidden; display: flex; flex-direction: column; background: var(--s0); }
+
+.nav-bar { display: flex; border-top: 1px solid var(--bd); background: var(--s2); }
+.ni { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 7px 2px; font-size: 9px; color: var(--tm); }
+.ni.on { color: var(--maroon); }
+.ni i { font-size: 19px; }
+.ni.on i { color: var(--maroon); }
+
+/* ── WEB LAYOUT ── */
+.wl { display: flex; min-height: 390px; }
+.wl-side { width: 158px; flex-shrink: 0; background: var(--s1); border-right: 1px solid var(--bd); padding: 12px 0; display: flex; flex-direction: column; gap: 2px; }
+.wl-logo { padding: 0 13px 12px; font-size: 13px; font-weight: 700; color: var(--maroon); border-bottom: 1px solid var(--bd); margin-bottom: 6px; }
+.wl-logo small { font-size: 9px; color: var(--tm); display: block; font-weight: 400; }
+.si { display: flex; align-items: center; gap: 8px; padding: 7px 13px; font-size: 11px; color: var(--ts); }
+.si.on { background: var(--maroon-light); color: var(--maroon); font-weight: 700; }
+.si i { font-size: 15px; flex-shrink: 0; }
+.wl-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.wtb { height: 46px; border-bottom: 1px solid var(--bd); display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: var(--s2); }
+.wtb-title { font-size: 14px; font-weight: 700; }
+.wc { flex: 1; padding: 14px 16px; background: var(--s0); }
+
+/* ── BUTTONS ── */
+.btn { height: 28px; padding: 0 11px; border-radius: var(--r); border: 1px solid var(--bds); font-size: 11px; color: var(--tp); background: var(--s2); display: inline-flex; align-items: center; gap: 5px; cursor: pointer; white-space: nowrap; }
+.btn.p { background: var(--maroon); color: #fff; border-color: var(--maroon); }
+.btn.g { background: var(--lime); color: #fff; border-color: var(--lime); }
+.btn i { font-size: 13px; }
+
+/* ── FORM ── */
+.ff { display: flex; flex-direction: column; gap: 3px; }
+.ff label { font-size: 10px; font-weight: 700; color: var(--ts); }
+.fi { height: 28px; background: var(--s2); border: 1px solid var(--bd); border-radius: var(--r); padding: 0 9px; font-size: 11px; color: var(--tp); display: flex; align-items: center; }
+.fi.ta { height: 46px; align-items: flex-start; padding: 6px 9px; font-size: 10px; color: var(--tm); }
+.fi.ph { color: var(--tm); }
+
+/* ── CARDS / ATOMS ── */
+.badge { display: inline-block; padding: 2px 7px; border-radius: 20px; font-size: 9px; font-weight: 700; }
+.badge.open { background: var(--suc); color: var(--suct); }
+.badge.enrolled { background: var(--acc); color: var(--acct); }
+.badge.pending { background: var(--wrn); color: var(--wrnt); }
+
+.stat-card { background: var(--s2); border: 1px solid var(--bd); border-radius: var(--r); padding: 9px 11px; }
+.sv { font-size: 19px; font-weight: 700; color: var(--tp); }
+.sl { font-size: 10px; color: var(--ts); margin-top: 1px; }
+
+.msg { max-width: 82%; padding: 6px 9px; border-radius: 9px; font-size: 10px; line-height: 1.45; }
+.msg.ai { background: var(--s2); border: 1px solid var(--bd); color: var(--tp); align-self: flex-start; }
+.msg.usr { background: var(--maroon); color: #fff; align-self: flex-end; }
+
+.tc { padding: 9px 11px; background: var(--s2); border: 1px solid var(--bd); border-radius: 9px; margin: 0 10px 8px; }
+.tc-row { display: flex; align-items: center; gap: 8px; }
+.tc-icon { width: 34px; height: 34px; background: var(--s0); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.tc-name { font-size: 11px; font-weight: 700; color: var(--tp); }
+.tc-sub { font-size: 9px; color: var(--ts); margin-top: 1px; }
+
+.ar { display: flex; align-items: center; gap: 8px; padding: 7px 10px; background: var(--s2); border: 1px solid var(--bd); border-radius: 7px; margin-bottom: 6px; }
+.ar.w { border-left: 2.5px solid var(--wrnb); }
+.ar.a { border-left: 2.5px solid var(--accb); }
+.ar i { font-size: 16px; }
+.ar-msg { font-size: 11px; flex: 1; }
+.ar-time { font-size: 9px; color: var(--tm); }
+
+.tag-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { padding: 3px 9px; border-radius: 4px; font-size: 9px; font-weight: 700; background: var(--s1); color: var(--ts); border: 1px solid var(--bd); }
+
+/* ── DATA TABLE ── */
+.dt { width: 100%; border-collapse: collapse; font-size: 11px; }
+.dt th { text-align: left; padding: 6px 9px; background: var(--s1); color: var(--ts); font-weight: 700; border-bottom: 1px solid var(--bd); white-space: nowrap; }
+.dt td { padding: 6px 9px; border-bottom: 1px solid var(--bd); color: var(--tp); vertical-align: middle; }
+.dt tr:last-child td { border-bottom: none; }
+.dt tr:hover td { background: var(--s0); }
+.st { display: inline-flex; align-items: center; gap: 3px; padding: 2px 7px; border-radius: 4px; font-size: 9px; font-weight: 700; white-space: nowrap; }
+.st.ok { background: var(--suc); color: var(--suct); }
+.st.pnd { background: var(--wrn); color: var(--wrnt); }
+.st.inf { background: var(--acc); color: var(--acct); }
+
+/* ── DEST CARD ── */
+.dc { width: 88px; flex-shrink: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--bd); }
+.dc-img { height: 56px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.dc-meta { background: var(--s2); padding: 4px 6px; }
+.dc-name { font-size: 10px; font-weight: 700; color: var(--tp); }
+.dc-sub { font-size: 9px; color: var(--ts); }
+
+/* ── MAP PLACEHOLDER ── */
+.map-ph { background: var(--s1); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; position: relative; }
+.map-ph i { font-size: 36px; color: var(--bds); }
+.map-ph span { font-size: 11px; color: var(--tm); }
+.map-pin { position: absolute; width: 13px; height: 13px; background: var(--maroon); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid var(--s2); }
+.map-pin2 { position: absolute; width: 10px; height: 10px; background: var(--lime); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid var(--s2); }
+
+/* ── PARITY BOX ── */
+.parity-box { background: var(--s2); border: 1px solid var(--bd); border-radius: 12px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; margin-top: 20px; }
+.parity-box i.big { font-size: 28px; color: var(--maroon); flex-shrink: 0; margin-top: 2px; }
+.parity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 22px; margin-top: 8px; }
+.parity-row { font-size: 10px; color: var(--ts); display: flex; align-items: flex-start; gap: 6px; }
+.parity-row i { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── SEARCH BAR ── */
+.search-bar { height: 28px; background: var(--s2); border: 1px solid var(--bd); border-radius: var(--r); display: flex; align-items: center; gap: 7px; padding: 0 9px; }
+.search-bar i { font-size: 14px; color: var(--tm); }
+.search-bar span { font-size: 10px; color: var(--tm); }
+
+/* ── PROGRESS BAR ── */
+.prog { height: 3px; background: var(--bd); border-radius: 2px; margin-top: 7px; }
+.prog-fill { height: 3px; background: var(--lime); border-radius: 2px; }
+
+/* ── SECTION DIVIDER ── */
+.sdiv { display: flex; align-items: center; gap: 10px; margin: 32px 0 20px; }
+.sdiv-line { flex: 1; height: 1px; background: var(--bd); }
+.sdiv-label { font-size: 10px; color: var(--tm); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+
+/* ── ORG CARD ── */
+.org-card { background: var(--s2); border: 1px solid var(--bd); border-radius: 9px; padding: 11px; margin-bottom: 9px; }
+.oc-head { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
+.oc-av { width: 34px; height: 34px; border-radius: 7px; background: var(--acc); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--acct); }
+
+/* ── NOTE BOX ── */
+.note { padding: 7px 10px; border-radius: var(--r); font-size: 10px; display: flex; align-items: flex-start; gap: 7px; }
+.note i { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.note.acc { background: var(--acc); color: var(--acct); }
+.note.suc { background: var(--suc); color: var(--suct); }
+.note.wrn { background: var(--wrn); color: var(--wrnt); }
+
+/* ── STOP LIST ── */
+.stop-item { display: flex; align-items: center; gap: 8px; padding: 6px 9px; background: var(--s2); border: 1px solid var(--bd); border-radius: 7px; font-size: 11px; }
+.stop-num { width: 18px; height: 18px; border-radius: 50%; background: var(--maroon); display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: 700; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══ SIDEBAR ══ -->
+<nav class="doc-sidebar">
+  <div class="doc-logo">
+    <div class="doc-logo-main">rah-e-ravaan</div>
+    <div class="doc-logo-sub">UX wireframe document · v1.0</div>
+  </div>
+
+  <div class="doc-nav-section">
+    <div class="doc-nav-label">Overview</div>
+    <a href="#cover" class="doc-nav-item active"><i class="ti ti-layout-2"></i>Introduction</a>
+    <a href="#auth" class="doc-nav-item"><i class="ti ti-key"></i>Auth &amp; onboarding</a>
+  </div>
+
+  <div class="doc-nav-section">
+    <div class="doc-nav-label">Customer portal</div>
+    <a href="#cust-mobile" class="doc-nav-item"><div class="dot dot-customer"></div>Mobile — home</a>
+    <a href="#cust-chat" class="doc-nav-item"><div class="dot dot-customer"></div>Mobile — AI planner</a>
+    <a href="#cust-trips" class="doc-nav-item"><div class="dot dot-customer"></div>Mobile — my trips</a>
+    <a href="#cust-tracking" class="doc-nav-item"><div class="dot dot-customer"></div>Mobile — GPS tracking</a>
+    <a href="#cust-web" class="doc-nav-item"><div class="dot dot-customer"></div>Web — home</a>
+    <a href="#cust-web-plan" class="doc-nav-item"><div class="dot dot-customer"></div>Web — AI planner</a>
+    <a href="#cust-web-map" class="doc-nav-item"><div class="dot dot-customer"></div>Web — map view</a>
+  </div>
+
+  <div class="doc-nav-section">
+    <div class="doc-nav-label">Organizer portal</div>
+    <a href="#org-dash" class="doc-nav-item"><div class="dot dot-organizer"></div>Dashboard</a>
+    <a href="#org-builder" class="doc-nav-item"><div class="dot dot-organizer"></div>Itinerary builder</a>
+    <a href="#org-participants" class="doc-nav-item"><div class="dot dot-organizer"></div>Participants</a>
+    <a href="#org-tracking" class="doc-nav-item"><div class="dot dot-organizer"></div>GPS group tracking</a>
+  </div>
+
+  <div class="doc-nav-section">
+    <div class="doc-nav-label">Admin console</div>
+    <a href="#admin-dash" class="doc-nav-item"><div class="dot dot-admin"></div>Dashboard</a>
+    <a href="#admin-organizers" class="doc-nav-item"><div class="dot dot-admin"></div>Organizer approval</a>
+    <a href="#admin-domains" class="doc-nav-item"><div class="dot dot-admin"></div>Domain registry</a>
+  </div>
+
+  <div class="doc-nav-section">
+    <div class="doc-nav-label">Notes</div>
+    <a href="#parity" class="doc-nav-item"><i class="ti ti-device-mobile"></i>Web ↔ mobile parity</a>
+  </div>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<main class="doc-main">
+
+<!-- ─ COVER ─ -->
+<div id="cover" class="cover">
+  <div class="cover-eyebrow">Final Year Project · BSCS · FAST-NUCES · NUST SEECS</div>
+  <div class="cover-title">Rah-e-<span>Ravaan</span><br>UX Wireframe Document</div>
+  <div class="cover-sub">AI-powered intelligent travel planning and tourism assistance platform for Pakistan. Three portals — customer (web + mobile), organizer, and admin — documented end-to-end.</div>
+  <div class="cover-chips">
+    <div class="chip chip-green">Customer — web + mobile</div>
+    <div class="chip chip-white">Organizer portal</div>
+    <div class="chip chip-white">Admin console</div>
+    <div class="chip chip-green">Store-and-forward GPS</div>
+    <div class="chip chip-white">Domain-locked enrollment</div>
+    <div class="chip chip-white">RAG-powered AI planner</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- AUTH -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="auth" class="doc-section">
+  <div class="section-eyebrow">Authentication</div>
+  <div class="section-title">Sign-up flows — all roles</div>
+  <div class="section-rule"></div>
+  <div class="section-desc">Three distinct paths from a shared landing page. Institutional email detection fires automatically at registration — if the domain matches a registered institution, the user is offered access to that institution's group trips.</div>
+  <div class="role-badge role-auth"><i class="ti ti-key"></i>Auth</div>
+
+  <div class="screens-row">
+
+    <!-- Customer signup mobile -->
+    <div class="screen-wrap">
+      <div class="phone">
+        <div class="phone-bar"><div class="phone-notch"></div></div>
+        <div class="phone-screen">
+          <div class="sh"><span class="logo">rah-e-ravaan</span></div>
+          <div class="sb" style="padding:16px 13px;gap:9px;display:flex;flex-direction:column">
+            <div style="font-size:14px;font-weight:700">Create account</div>
+            <div style="font-size:10px;color:var(--ts)">Plan your perfect trip across Pakistan</div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div class="ff"><label>Full name</label><div class="fi">Faryal Ahmed</div></div>
+              <div class="ff"><label>Email</label><div class="fi">faryal@nu.edu.pk</div></div>
+              <div class="ff"><label>Password</label><div class="fi ph">••••••••</div></div>
+            </div>
+            <div class="note acc"><i class="ti ti-school"></i>Institutional email detected — you'll get access to FAST-NUCES group trips</div>
+            <div style="height:30px;background:var(--maroon);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700">Create account</div>
+            <div style="display:flex;align-items:center;gap:7px"><div style="flex:1;height:1px;background:var(--bd)"></div><span style="font-size:9px;color:var(--tm)">or</span><div style="flex:1;height:1px;background:var(--bd)"></div></div>
+            <div style="height:30px;background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px"><i class="ti ti-brand-google" style="font-size:14px"></i>Continue with Google</div>
+            <div style="text-align:center;font-size:10px;color:var(--ts)">Already have an account? <span style="color:var(--maroon);font-weight:700">Sign in</span></div>
+          </div>
+        </div>
+        <div class="phone-bottom"><div class="phone-home"></div></div>
+      </div>
+      <div class="screen-label">Customer sign-up (mobile)</div>
+    </div>
+
+    <!-- Onboarding quiz -->
+    <div class="screen-wrap">
+      <div class="phone">
+        <div class="phone-bar"><div class="phone-notch"></div></div>
+        <div class="phone-screen">
+          <div class="sh"><span>Personalise your feed</span></div>
+          <div class="sb" style="padding:14px 13px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:4px">
+              <div style="flex:1;height:3px;background:var(--maroon);border-radius:2px"></div>
+              <div style="flex:1;height:3px;background:var(--maroon);border-radius:2px"></div>
+              <div style="flex:1;height:3px;background:var(--bd);border-radius:2px"></div>
+              <div style="flex:1;height:3px;background:var(--bd);border-radius:2px"></div>
+            </div>
+            <div style="font-size:12px;font-weight:700">What kind of traveler are you?</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="padding:8px 10px;background:var(--maroon-light);border:1.5px solid var(--maroon);border-radius:9px;display:flex;align-items:center;gap:8px"><span style="font-size:15px">🏔</span><div><div style="font-size:11px;font-weight:700;color:var(--maroon)">Adventure &amp; trekking</div><div style="font-size:9px;color:var(--ts)">Hiking, camping, extreme sports</div></div></div>
+              <div style="padding:8px 10px;background:var(--s2);border:1px solid var(--bd);border-radius:9px;display:flex;align-items:center;gap:8px"><span style="font-size:15px">🕌</span><div><div style="font-size:11px;font-weight:700">Culture &amp; history</div><div style="font-size:9px;color:var(--ts)">Heritage, architecture, food</div></div></div>
+              <div style="padding:8px 10px;background:var(--s2);border:1px solid var(--bd);border-radius:9px;display:flex;align-items:center;gap:8px"><span style="font-size:15px">🌿</span><div><div style="font-size:11px;font-weight:700">Nature &amp; leisure</div><div style="font-size:9px;color:var(--ts)">Scenic drives, valleys, relaxing</div></div></div>
+              <div style="padding:8px 10px;background:var(--s2);border:1px solid var(--bd);border-radius:9px;display:flex;align-items:center;gap:8px"><span style="font-size:15px">👨‍👩‍👧</span><div><div style="font-size:11px;font-weight:700">Family trips</div><div style="font-size:9px;color:var(--ts)">Kid-friendly, comfortable stays</div></div></div>
+            </div>
+            <div style="margin-top:auto;height:30px;background:var(--maroon);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700">Next</div>
+          </div>
+        </div>
+        <div class="phone-bottom"><div class="phone-home"></div></div>
+      </div>
+      <div class="screen-label">Onboarding quiz (step 2/4)</div>
+    </div>
+
+    <!-- Organizer registration web -->
+    <div class="screen-wrap" style="flex:1;min-width:300px">
+      <div class="web">
+        <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/organizer/register</span></div></div>
+        <div style="padding:22px;display:flex;flex-direction:column;gap:13px;background:var(--s0);min-height:340px">
+          <div style="font-size:16px;font-weight:700">Register as an organizer</div>
+          <div style="display:flex;gap:9px">
+            <div style="flex:1;padding:12px;border:1.5px solid var(--maroon);border-radius:9px;background:var(--maroon-light)">
+              <i class="ti ti-building-store" style="font-size:22px;color:var(--maroon)"></i>
+              <div style="font-size:11px;font-weight:700;color:var(--maroon);margin-top:5px">Travel agency</div>
+              <div style="font-size:9px;color:var(--ts)">Registered business</div>
+            </div>
+            <div style="flex:1;padding:12px;border:1px solid var(--bd);border-radius:9px;background:var(--s2)">
+              <i class="ti ti-school" style="font-size:22px;color:var(--ts)"></i>
+              <div style="font-size:11px;font-weight:700;margin-top:5px">Institutional committee</div>
+              <div style="font-size:9px;color:var(--ts)">University / college club</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+            <div class="ff"><label>Business name</label><div class="fi">PakTours Pvt Ltd</div></div>
+            <div class="ff"><label>Contact email</label><div class="fi">info@paktours.pk</div></div>
+            <div class="ff"><label>TDAP licence no.</label><div class="fi">TDAP-2024-0392</div></div>
+            <div class="ff"><label>City</label><div class="fi">Lahore</div></div>
+          </div>
+          <div class="ff"><label>Upload registration document</label>
+            <div style="height:46px;border:1.5px dashed var(--bds);border-radius:var(--r);display:flex;align-items:center;justify-content:center;gap:7px;font-size:10px;color:var(--tm)"><i class="ti ti-upload" style="font-size:15px"></i>Drop PDF or image here</div>
+          </div>
+          <div class="note wrn"><i class="ti ti-clock"></i>Account pending review — platform team responds within 1–2 business days</div>
+          <div style="height:32px;background:var(--maroon);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700">Submit application</div>
+        </div>
+      </div>
+      <div class="screen-label">Organizer registration (web)</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CUSTOMER MOBILE -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="cust-mobile" class="doc-section">
+  <div class="section-eyebrow">Portal 1 · Customer · Mobile</div>
+  <div class="section-title">Customer mobile app (Flutter)</div>
+  <div class="section-rule"></div>
+  <div class="role-badge role-customer"><div class="dot dot-customer"></div>Customer</div>
+
+  <div class="screens-row">
+
+    <!-- Home -->
+    <div class="screen-wrap">
+      <div class="phone">
+        <div class="phone-bar"><div class="phone-notch"></div></div>
+        <div class="phone-screen">
+          <div class="sh"><span class="logo">rah-e-ravaan</span><div style="display:flex;gap:8px"><i class="ti ti-bell" style="font-size:16px;color:#fff"></i><i class="ti ti-user-circle" style="font-size:16px;color:#fff"></i></div></div>
+          <div class="sb">
+            <div style="margin:10px 10px 0;background:var(--maroon);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px">
+              <div style="font-size:9px;color:rgba(255,255,255,.6);font-weight:700;letter-spacing:.07em;text-transform:uppercase">AI trip planner</div>
+              <div style="font-size:13px;font-weight:700;color:#fff">Where do you want to go?</div>
+              <div style="background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:6px 9px;font-size:10px;color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:space-between"><span>Ask anything…</span><i class="ti ti-sparkles" style="font-size:13px"></i></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px 4px"><span style="font-size:11px;font-weight:700">Trending</span><a style="font-size:10px;color:var(--maroon);text-decoration:none">See all</a></div>
+            <div style="display:flex;gap:8px;padding:0 10px 8px;overflow:hidden">
+              <div class="dc"><div class="dc-img" style="background:#C0DD97">🏔</div><div class="dc-meta"><div class="dc-name">Hunza</div><div class="dc-sub">GB · 5d</div></div></div>
+              <div class="dc"><div class="dc-img" style="background:#9FE1CB">🌿</div><div class="dc-meta"><div class="dc-name">Swat</div><div class="dc-sub">KPK · 3d</div></div></div>
+              <div class="dc"><div class="dc-img" style="background:#FAC775">🕌</div><div class="dc-meta"><div class="dc-name">Lahore</div><div class="dc-sub">Punjab</div></div></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 10px 4px"><span style="font-size:11px;font-weight:700">Group trips</span><a style="font-size:10px;color:var(--maroon);text-decoration:none">See all</a></div>
+            <div class="tc">
+              <div class="tc-row"><div class="tc-icon">🎓</div><div style="flex:1"><div class="tc-name">FAST Winter Trek 2025</div><div class="tc-sub">Dec 20–27 · 12 spots left</div></div><span class="badge open">Open</span></div>
+            </div>
+          </div>
+          <div class="nav-bar"><div class="ni on"><i class="ti ti-home"></i>Home</div><div class="ni"><i class="ti ti-map-search"></i>Explore</div><div class="ni"><i class="ti ti-route"></i>Plan</div><div class="ni"><i class="ti ti-luggage"></i>Trips</div><div class="ni"><i class="ti ti-user"></i>Profile</div></div>
+        </div>
+        <div class="phone-bottom"><div class="phone-home"></div></div>
+      </div>
+      <div class="screen-label">Home / discovery feed</div>
+    </div>
+
+    <!-- AI chat -->
+    <div id="cust-chat" class="screen-wrap">
+      <div class="phone">
+        <div class="phone-bar"><div class="phone-notch"></div></div>
+        <div class="phone-screen">
+          <div class="sh" style="gap:8px"><i class="ti ti-arrow-left" style="font-size:15px;color:#fff"></i><span style="flex:1">AI trip planner</span><i class="ti ti-sparkles" style="font-size:15px;color:#fff"></i></div>
+          <div class="sb" style="flex:1;padding:10px;gap:7px;display:flex;flex-direction:column">
+            <div class="msg ai">Hi! Where would you like to go? I'll plan the perfect trip. 🧳</div>
+            <div class="msg usr">5 days in Hunza, August, family of 4, mid-budget</div>
+            <div class="msg ai">Great choice! Do you prefer scenic hikes or cultural visits? Any dietary needs?</div>
+            <div class="msg usr">Mix of both. Halal food only.</div>
+            <div class="msg ai"><b>Day 1</b> — Arrive Gilgit, drive to Karimabad<br><b>Day 2</b> — Altit Fort + Eagle's Nest<br><b>Day 3</b> — Attabad Lake boat ride<br><small style="color:rgba(255,255,255,.7)">+ 2 more days…</small></div>
+          </div>
+          <div style="padding:6px 10px;background:var(--s2);border-top:1px solid var(--bd)">
+            <div style="display:flex;gap:5px;margin-bottom:6px">
+              <div style="padding:3px 7px;background:var(--s0);border:1px solid var(--bd);border-radius:4px;font-size:9px;color:var(--ts)">Skip hike on day 3</div>
+              <div style="padding:3px 7px;background:var(--s0);border:1px solid var(--bd);border-radius:4px;font-size:9px;color:var(--ts)">Show cost estimate</div>
+            </div>
+            <div style="display:flex;gap:6px">
+              <div style="flex:1;height:28px;background:var(--s0);border:1px solid var(--bd);border-radius:var(--r);display:flex;align-items:center;padding:0 9px;font-size:10px;color:var(--tm)">Type a message…</div>
+              <div style="width:28px;height:28px;background:var(--maroon);border-radius:var(--r);display:flex;align-items:center;justify-content:center"><i class="ti ti-send" style="font-size:14px;color:#fff"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-bottom"><div class="phone-home"></div></div>
+      </div>
+      <div class="screen-label">AI planner chat</div>
+    </div>
+
+    <!-- My trips -->
+    <div id="cust-trips" class="screen-wrap">
+      <div class="phone">
+        <div class="phone-bar"><div class="phone-notch"></div></div>
+        <div class="phone-screen">
+          <div class="sh"><span>My trips</span><i class="ti ti-plus" style="font-size:15px;color:#fff"></i></div>
+          <div class="sb" style="padding-top:8px">
+            <div style="padding:0 10px;margin-bottom:7px;display:flex;gap:5px">
+              <div style="padding:3px 9px;background:var(--maroon);border-radius:4px;font-size:10px;color:#fff;font-weight:700">Upcoming</div>
+              <div style="padding:3px 9px;background:var(--s2);border:1px solid var(--bd);border-radius:4px;font-size:10px;color:var(--ts)">Active</div>
+              <div style="padding:3px 9px;background:var(--s2);border:1px solid var(--bd);border-radius:4px;font-size:10px;color:var(--ts)">Past</div>
+            </div>
+            <div class="tc">
+              <div class="tc-row"><div class="tc-icon">🏔</div><div style="flex:1"><div class="tc-name">Hunza Family Trip</div><div class="tc-sub">Aug 12 – Aug 17</div></div><span class="badge open">Upcoming</span></div>
+              <div class="prog"><div class="prog-fill" style="width:65%"></div></div>
+              <div style="font-size:9px;color:var(--tm);margin-top:3px">Itinerary 65% confirmed</div>
+            </div>
+            <div class="tc">
+              <div class="tc-row"><div class="tc-icon">🎓</div><div style="flex:1"><div class="tc-name">FAST Winter Trek</div><div class="tc-sub">Dec 20 – Dec 27</div></div><span class="badge enrolled">Enrolled</span></div>
+              <div style="margin-top:6px;padding:4px 7px;background:var(--s0);border-radius:4px;font-size:9px;color:var(--ts);display:flex;align-items:center;gap:4px"><i class="ti ti-users" style="font-size:11px"></i>18 / 30 enrolled</div>
+            </div>
+            <div style="padding:8px 10px 0">
+              <div style="display:flex;align-items:center;gap:6px;padding:7px 9px;background:var(--s2);border:1px solid var(--bd);border-radius:7px">
+                <i class="ti ti-share" style="font-size:14px;color:var(--tm)"></i>
+                <span style="font-size:10px;color:var(--ts)">Share trip link or invite by email</span>
+              </div>
+            </div>
+          </div>
+          <div class="nav-bar"><div class="ni"><i class="ti ti-home"></i>Home</div><div class="ni"><i class="ti ti-map-search"></i>Explore</div><div class="ni"><i class="ti ti-route"></i>Plan</div><div class="ni on"><i class="ti ti-luggage"></i>Trips</div><div class="ni"><i class="ti ti-user"></i>Profile</div></div>
+        </div>
+        <div class="phone-bottom"><div class="phone-home"></div></div>
+      </div>
+      <div class="screen-label">My trips</div>
+    </div>
+
+    <!-- GPS tracking -->
+    <div id="cust-tracking" class="screen-wrap">
+      <div class="phone">
+        <div class="phone-bar"><div class="phone-notch"></div></div>
+        <div class="phone-screen">
+          <div class="sh"><i class="ti ti-arrow-left" style="font-size:15px;color:#fff"></i><span style="flex:1;text-align:left;padding-left:8px">Live tracking</span><i class="ti ti-settings" style="font-size:15px;color:#fff"></i></div>
+          <div style="padding:8px 10px;background:var(--s2);border-bottom:1px solid var(--bd)">
+            <div style="font-size:11px;font-weight:700">Hunza Family Trip</div>
+            <div style="display:flex;gap:6px;margin-top:4px">
+              <div style="padding:2px 7px;background:var(--wrn);border-radius:4px;font-size:9px;color:var(--wrnt);font-weight:700;display:flex;align-items:center;gap:3px"><i class="ti ti-wifi-off" style="font-size:10px"></i>Offline logging</div>
+              <div style="padding:2px 7px;background:var(--suc);border-radius:4px;font-size:9px;color:var(--suct);font-weight:700">GPS active</div>
+            </div>
+          </div>
+          <div class="map-ph" style="flex:1;min-height:150px">
+            <i class="ti ti-map"></i><span>Mapbox (offline tiles)</span>
+            <div class="map-pin" style="top:30%;left:38%"></div>
+            <div class="map-pin2" style="top:55%;left:62%"></div>
+            <div style="position:absolute;top:37%;left:44%;width:48px;height:2px;background:var(--maroon);opacity:.4;transform:rotate(15deg)"></div>
+            <div style="position:absolute;bottom:8px;left:8px;right:8px;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:6px 8px">
+              <div style="font-size:8px;color:var(--tm)">Last synced · 47 min ago</div>
+              <div style="font-size:10px;font-weight:700;margin-top:2px"><i class="ti ti-map-pin" style="font-size:11px"></i> Near Karimabad · alt 2,400m</div>
+            </div>
+          </div>
+          <div style="padding:8px 10px;background:var(--s2);border-top:1px solid var(--bd)">
+            <div style="font-size:10px;font-weight:700;margin-bottom:5px">Parent view (read-only)</div>
+            <div style="display:flex;gap:6px">
+              <div style="flex:1;padding:5px;background:var(--s0);border:1px solid var(--bd);border-radius:6px;text-align:center"><div style="font-size:9px;color:var(--tm)">Log entries</div><div style="font-size:13px;font-weight:700">1,842</div></div>
+              <div style="flex:1;padding:5px;background:var(--s0);border:1px solid var(--bd);border-radius:6px;text-align:center"><div style="font-size:9px;color:var(--tm)">Battery</div><div style="font-size:13px;font-weight:700;color:var(--wrnt)">34%</div></div>
+              <div style="flex:1;padding:5px;background:var(--s0);border:1px solid var(--bd);border-radius:6px;text-align:center"><div style="font-size:9px;color:var(--tm)">Interval</div><div style="font-size:13px;font-weight:700">30s</div></div>
+            </div>
+          </div>
+          <div class="nav-bar"><div class="ni"><i class="ti ti-home"></i>Home</div><div class="ni"><i class="ti ti-map-search"></i>Explore</div><div class="ni"><i class="ti ti-route"></i>Plan</div><div class="ni on"><i class="ti ti-luggage"></i>Trips</div><div class="ni"><i class="ti ti-user"></i>Profile</div></div>
+        </div>
+        <div class="phone-bottom"><div class="phone-home"></div></div>
+      </div>
+      <div class="screen-label">Offline GPS / parent tracking</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CUSTOMER WEB -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="cust-web" class="doc-section">
+  <div class="section-eyebrow">Portal 1 · Customer · Web</div>
+  <div class="section-title">Customer web interface (React + Vite + Mapbox)</div>
+  <div class="section-rule"></div>
+  <div class="section-desc">Full web experience mirroring the mobile app. Same account, same backend. Key difference: the AI planner uses a split panel on web instead of a full-screen chat. Offline GPS logging is mobile-only; parent breadcrumb tracking is readable on web.</div>
+  <div class="role-badge role-customer"><div class="dot dot-customer"></div>Customer — web</div>
+
+  <!-- Top nav callout -->
+  <div style="background:var(--s2);border:1px solid var(--bd);border-radius:10px;overflow:hidden;margin-bottom:18px">
+    <div style="background:var(--maroon);padding:10px 20px;display:flex;align-items:center;gap:20px">
+      <div style="font-size:15px;font-weight:800;color:#fff;letter-spacing:.02em">rah-e-ravaan</div>
+      <div style="flex:1;display:flex;gap:22px;justify-content:center">
+        <span style="font-size:12px;color:rgba(255,255,255,.5)">Explore</span>
+        <span style="font-size:12px;color:#fff;font-weight:700;border-bottom:2px solid var(--lime);padding-bottom:2px">Plan a trip</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.5)">Group trips</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.5)">My trips</span>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <i class="ti ti-bell" style="font-size:17px;color:rgba(255,255,255,.6)"></i>
+        <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700">FA</div>
+      </div>
+    </div>
+    <div style="padding:7px 16px;background:var(--s1);font-size:10px;color:var(--tm)">Persistent top nav — all customer web screens. Collapses to hamburger on mobile breakpoint (&lt;768px).</div>
+  </div>
+
+  <!-- Web home -->
+  <div class="web" style="margin-bottom:16px">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/home</span></div></div>
+    <div style="background:var(--s0)">
+      <div style="background:var(--maroon);padding:24px 20px;display:flex;flex-direction:column;gap:9px">
+        <div style="font-size:9px;color:rgba(255,255,255,.5);font-weight:700;letter-spacing:.1em;text-transform:uppercase">AI-powered trip planner</div>
+        <div style="font-size:20px;font-weight:800;color:#fff">Where in Pakistan do you want to go?</div>
+        <div style="display:flex;gap:9px;margin-top:4px">
+          <div style="flex:1;height:36px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:var(--r);display:flex;align-items:center;padding:0 13px;gap:9px">
+            <i class="ti ti-sparkles" style="font-size:16px;color:rgba(255,255,255,.5)"></i>
+            <span style="font-size:12px;color:rgba(255,255,255,.45)">"5 days in Hunza, family of 4, mid-budget…"</span>
+          </div>
+          <div style="width:84px;height:36px;background:var(--lime);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700">Plan trip</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <div style="padding:3px 11px;background:rgba(255,255,255,.1);border-radius:4px;font-size:9px;color:rgba(255,255,255,.65)">Weekend getaway from Lahore</div>
+          <div style="padding:3px 11px;background:rgba(255,255,255,.1);border-radius:4px;font-size:9px;color:rgba(255,255,255,.65)">Solo trek in Skardu</div>
+          <div style="padding:3px 11px;background:rgba(255,255,255,.1);border-radius:4px;font-size:9px;color:rgba(255,255,255,.65)">Honeymoon in Swat</div>
+        </div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:13px;font-weight:700;margin-bottom:10px">Trending destinations</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+          <div style="border-radius:9px;overflow:hidden;border:1px solid var(--bd)"><div style="height:68px;background:#C0DD97;display:flex;align-items:center;justify-content:center;font-size:24px">🏔</div><div style="padding:6px 8px;background:var(--s2)"><div style="font-size:11px;font-weight:700">Hunza</div><div style="font-size:9px;color:var(--ts)">Gilgit-Baltistan</div></div></div>
+          <div style="border-radius:9px;overflow:hidden;border:1px solid var(--bd)"><div style="height:68px;background:#9FE1CB;display:flex;align-items:center;justify-content:center;font-size:24px">🌿</div><div style="padding:6px 8px;background:var(--s2)"><div style="font-size:11px;font-weight:700">Swat Valley</div><div style="font-size:9px;color:var(--ts)">Khyber Pakhtunkhwa</div></div></div>
+          <div style="border-radius:9px;overflow:hidden;border:1px solid var(--bd)"><div style="height:68px;background:#FAC775;display:flex;align-items:center;justify-content:center;font-size:24px">🕌</div><div style="padding:6px 8px;background:var(--s2)"><div style="font-size:11px;font-weight:700">Lahore</div><div style="font-size:9px;color:var(--ts)">Punjab</div></div></div>
+          <div style="border-radius:9px;overflow:hidden;border:1px solid var(--bd)"><div style="height:68px;background:#B5D4F4;display:flex;align-items:center;justify-content:center;font-size:24px">🏜</div><div style="padding:6px 8px;background:var(--s2)"><div style="font-size:11px;font-weight:700">Thar Desert</div><div style="font-size:9px;color:var(--ts)">Sindh</div></div></div>
+        </div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:10px">Group trips open for enrollment</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:9px;padding:11px;display:flex;gap:11px;align-items:center"><div style="width:38px;height:38px;background:var(--acc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🎓</div><div style="flex:1"><div style="font-size:11px;font-weight:700">FAST Winter Trek 2025</div><div style="font-size:9px;color:var(--ts)">Dec 20–27 · 12 spots · Institutional (FAST)</div></div><span class="badge open">Open</span></div>
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:9px;padding:11px;display:flex;gap:11px;align-items:center"><div style="width:38px;height:38px;background:var(--suc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏕</div><div style="flex:1"><div style="font-size:11px;font-weight:700">Skardu Expedition — PakTours</div><div style="font-size:9px;color:var(--ts)">Jan 5–12 · Rs 28,000 · Open to all</div></div><span class="badge open">Open</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left;margin-bottom:18px">Customer web — home / discovery</div>
+
+  <!-- Web planner split -->
+  <div id="cust-web-plan" class="web" style="margin-bottom:16px">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/plan</span></div></div>
+    <div style="display:grid;grid-template-columns:310px 1fr;min-height:360px">
+      <div style="border-right:1px solid var(--bd);display:flex;flex-direction:column;background:var(--s0)">
+        <div style="padding:10px 13px;border-bottom:1px solid var(--bd);background:var(--s2);display:flex;align-items:center;gap:8px">
+          <i class="ti ti-sparkles" style="font-size:16px;color:var(--maroon)"></i>
+          <span style="font-size:12px;font-weight:700">AI trip planner</span>
+          <div style="margin-left:auto;font-size:9px;color:var(--tm);background:var(--s1);padding:2px 7px;border-radius:4px;border:1px solid var(--bd)">Hunza trip</div>
+        </div>
+        <div style="flex:1;padding:11px;display:flex;flex-direction:column;gap:7px">
+          <div class="msg ai">Hi! Tell me where you'd like to go and I'll build a personalised itinerary.</div>
+          <div class="msg usr">5 days Hunza, August, family of 4, mid-budget</div>
+          <div class="msg ai">Great choice for August — clear skies in GB. Dietary preferences?</div>
+          <div class="msg usr">Halal food only, no strenuous hikes</div>
+          <div class="msg ai">Got it. Here's your itinerary — edit any day in the right panel.</div>
+        </div>
+        <div style="padding:8px;border-top:1px solid var(--bd);background:var(--s2);display:flex;gap:7px">
+          <div style="flex:1;height:30px;background:var(--s0);border:1px solid var(--bd);border-radius:var(--r);display:flex;align-items:center;padding:0 10px;font-size:10px;color:var(--tm)">Ask anything…</div>
+          <div style="width:30px;height:30px;background:var(--maroon);border-radius:var(--r);display:flex;align-items:center;justify-content:center"><i class="ti ti-send" style="font-size:14px;color:#fff"></i></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;background:var(--s0)">
+        <div style="padding:10px 15px;border-bottom:1px solid var(--bd);background:var(--s2);display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:12px;font-weight:700">Itinerary preview</span>
+          <div style="display:flex;gap:7px"><div class="btn"><i class="ti ti-share"></i>Share</div><div class="btn"><i class="ti ti-file-text"></i>PDF</div><div class="btn p"><i class="ti ti-check"></i>Save trip</div></div>
+        </div>
+        <div style="padding:13px 15px;flex:1;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--bd)">
+            <div><div style="font-size:13px;font-weight:700">Hunza Family Trip</div><div style="font-size:10px;color:var(--ts)">Aug 12–17 · 5 days · Family of 4 · Est. Rs 85,000</div></div>
+            <div style="margin-left:auto;padding:4px 11px;background:var(--suc);border-radius:var(--r);font-size:10px;color:var(--suct);font-weight:700">Budget on track</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div class="stop-item"><div class="stop-num">1</div><div><div style="font-size:11px;font-weight:700">Arrive Gilgit — Drive to Karimabad</div><div style="font-size:9px;color:var(--ts)">PTDC Motel · Dinner at Hunza Food &amp; Crafts</div></div><i class="ti ti-pencil" style="margin-left:auto;font-size:13px;color:var(--tm)"></i></div>
+            <div class="stop-item"><div class="stop-num">2</div><div><div style="font-size:11px;font-weight:700">Altit Fort + Eagle's Nest viewpoint</div><div style="font-size:9px;color:var(--ts)">Scenic drive · Ramet Restaurant for lunch</div></div><i class="ti ti-pencil" style="margin-left:auto;font-size:13px;color:var(--tm)"></i></div>
+            <div style="display:flex;align-items:center;gap:9px;padding:8px;background:var(--s1);border:1.5px dashed var(--bds);border-radius:9px"><i class="ti ti-loader" style="font-size:15px;color:var(--tm)"></i><span style="font-size:10px;color:var(--tm)">Days 3–5 generating…</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left;margin-bottom:18px">Customer web — AI planner (split panel)</div>
+
+  <!-- Web map view -->
+  <div id="cust-web-map" class="web">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/trips/hunza-family-aug/map</span></div></div>
+    <div style="display:grid;grid-template-columns:268px 1fr;min-height:300px">
+      <div style="border-right:1px solid var(--bd);background:var(--s1);padding:13px;display:flex;flex-direction:column;gap:9px">
+        <div style="font-size:13px;font-weight:700">Hunza Family Trip</div>
+        <div style="font-size:10px;color:var(--ts)">Aug 12–17 · 5 days</div>
+        <div style="display:flex;gap:7px"><div class="btn"><i class="ti ti-download"></i>Offline maps</div><div class="btn p"><i class="ti ti-map-route"></i>Navigate</div></div>
+        <div style="border-top:1px solid var(--bd);padding-top:9px;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:10px;font-weight:700;color:var(--ts);margin-bottom:3px">Route stops</div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:10px"><div style="width:9px;height:9px;border-radius:50%;background:var(--maroon);flex-shrink:0"></div>Gilgit Airport</div>
+          <div style="width:1px;height:9px;background:var(--bd);margin-left:4px"></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:10px"><div style="width:9px;height:9px;border-radius:50%;background:var(--maroon);flex-shrink:0"></div>Karimabad</div>
+          <div style="width:1px;height:9px;background:var(--bd);margin-left:4px"></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:10px"><div style="width:9px;height:9px;border-radius:50%;background:var(--maroon);flex-shrink:0"></div>Altit Fort</div>
+          <div style="width:1px;height:9px;background:var(--bd);margin-left:4px"></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:10px"><div style="width:9px;height:9px;border-radius:50%;background:var(--lime);flex-shrink:0"></div>Attabad Lake</div>
+        </div>
+        <div style="border-top:1px solid var(--bd);padding-top:9px">
+          <div style="font-size:10px;font-weight:700;color:var(--ts);margin-bottom:5px">Parent tracking</div>
+          <div style="padding:7px 9px;background:var(--s2);border:1px solid var(--bd);border-radius:7px;display:flex;align-items:center;gap:7px">
+            <i class="ti ti-map-pin" style="font-size:14px;color:var(--lime)"></i>
+            <div style="flex:1"><div style="font-size:9px;font-weight:700">Shared with 1 parent</div><div style="font-size:8px;color:var(--tm)">Last sync 12 min ago · breadcrumb trail on</div></div>
+            <i class="ti ti-settings" style="font-size:13px;color:var(--tm)"></i>
+          </div>
+        </div>
+      </div>
+      <div class="map-ph" style="min-height:200px">
+        <i class="ti ti-map"></i><span>Mapbox interactive map (React)</span>
+        <div class="map-pin" style="top:35%;left:40%"></div>
+        <div class="map-pin2" style="top:58%;left:65%"></div>
+        <div style="position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:5px">
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center"><i class="ti ti-plus" style="font-size:15px"></i></div>
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center"><i class="ti ti-minus" style="font-size:15px"></i></div>
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center"><i class="ti ti-current-location" style="font-size:15px"></i></div>
+        </div>
+        <div style="position:absolute;bottom:12px;left:12px;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:6px 9px;font-size:9px;color:var(--ts);display:flex;align-items:center;gap:6px"><i class="ti ti-download" style="font-size:12px"></i>Offline tiles downloaded</div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left">Customer web — trip map view + parent tracking panel</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ORGANIZER PORTAL -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="org-dash" class="doc-section">
+  <div class="section-eyebrow">Portal 2 · Organizer · Web</div>
+  <div class="section-title">Organizer portal (/organizer)</div>
+  <div class="section-rule"></div>
+  <div class="section-desc">Web-only portal for travel agencies and institutional trip committees. Two sub-types: agencies see revenue analytics; institutional committees see domain management and student enrollment. Both types go through admin approval before activation.</div>
+  <div class="role-badge role-organizer"><div class="dot dot-organizer"></div>Organizer</div>
+
+  <!-- Org dashboard -->
+  <div class="web" style="margin-bottom:16px">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/organizer</span></div></div>
+    <div class="wl">
+      <div class="wl-side">
+        <div class="wl-logo">rah-e-ravaan<small>organizer portal</small></div>
+        <div class="si on"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+        <div class="si"><i class="ti ti-map-route"></i>Itineraries</div>
+        <div class="si"><i class="ti ti-users"></i>Participants</div>
+        <div class="si"><i class="ti ti-map-pin"></i>GPS tracking</div>
+        <div class="si"><i class="ti ti-chart-bar"></i>Analytics</div>
+        <div class="si"><i class="ti ti-school"></i>Domain</div>
+        <div class="si" style="margin-top:auto"><i class="ti ti-settings"></i>Settings</div>
+      </div>
+      <div class="wl-main">
+        <div class="wtb"><div class="wtb-title">Dashboard</div><div class="btn p"><i class="ti ti-plus"></i>New itinerary</div></div>
+        <div class="wc">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:14px">
+            <div class="stat-card"><div class="sv">6</div><div class="sl">Itineraries published</div></div>
+            <div class="stat-card"><div class="sv">142</div><div class="sl">Total enrollments</div></div>
+            <div class="stat-card"><div class="sv">2</div><div class="sl">Active trips</div></div>
+            <div class="stat-card"><div class="sv">4.8 ★</div><div class="sl">Avg. rating</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:700;margin-bottom:7px">Recent activity</div>
+          <div class="ar a"><i class="ti ti-user-plus" style="color:var(--acct)"></i><div class="ar-msg">Sara K. enrolled in <b>FAST Winter Trek 2025</b></div><div class="ar-time">2 min ago</div></div>
+          <div class="ar w"><i class="ti ti-alert-triangle" style="color:var(--wrnt)"></i><div class="ar-msg">GPS signal lost for <b>Ahmed M.</b> — last seen 48 min ago</div><div class="ar-time">1 hr ago</div></div>
+          <div class="ar a"><i class="ti ti-message" style="color:var(--acct)"></i><div class="ar-msg">New question from participant on <b>Skardu Expedition</b></div><div class="ar-time">3 hr ago</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left;margin-bottom:18px">Organizer — dashboard</div>
+
+  <!-- Itinerary builder -->
+  <div id="org-builder" class="web" style="margin-bottom:16px">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/organizer/itineraries/new</span></div></div>
+    <div class="wl">
+      <div class="wl-side">
+        <div class="wl-logo">rah-e-ravaan<small>organizer portal</small></div>
+        <div class="si"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+        <div class="si on"><i class="ti ti-map-route"></i>Itineraries</div>
+        <div class="si"><i class="ti ti-users"></i>Participants</div>
+        <div class="si"><i class="ti ti-map-pin"></i>GPS tracking</div>
+        <div class="si"><i class="ti ti-chart-bar"></i>Analytics</div>
+        <div class="si"><i class="ti ti-school"></i>Domain</div>
+      </div>
+      <div class="wl-main">
+        <div class="wtb"><div class="wtb-title">New itinerary</div><div style="display:flex;gap:7px"><div class="btn"><i class="ti ti-eye"></i>Preview</div><div class="btn p"><i class="ti ti-send"></i>Publish</div></div></div>
+        <div class="wc">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div class="ff"><label>Trip name</label><div class="fi">FAST Winter Trek 2025</div></div>
+                <div class="ff"><label>Max participants</label><div class="fi">30</div></div>
+              </div>
+              <div class="ff"><label>Description</label><div class="fi ta">A 7-day winter trek through the valleys of Northern Pakistan, open to FAST students…</div></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div class="ff"><label>Visibility</label><div class="fi" style="justify-content:space-between">Institution-only <i class="ti ti-chevron-down" style="font-size:12px;color:var(--tm)"></i></div></div>
+                <div class="ff"><label>Package price</label><div class="fi">Free (institutional)</div></div>
+              </div>
+              <div class="note suc"><i class="ti ti-lock"></i>Domain-locked to @nu.edu.pk — only verified FAST students can enroll</div>
+              <div style="font-size:11px;font-weight:700;margin-top:2px">Day-by-day stops</div>
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div class="stop-item"><div class="stop-num">1</div><span style="font-size:11px">Arrive Islamabad → Drive to Besham</span><i class="ti ti-grip-vertical" style="margin-left:auto;font-size:13px;color:var(--tm)"></i></div>
+                <div class="stop-item"><div class="stop-num">2</div><span style="font-size:11px">Drive to Gilgit · Rakaposhi viewpoint</span><i class="ti ti-grip-vertical" style="margin-left:auto;font-size:13px;color:var(--tm)"></i></div>
+                <div style="display:flex;align-items:center;gap:7px;padding:7px 9px;background:var(--s0);border:1.5px dashed var(--bds);border-radius:7px;cursor:pointer"><i class="ti ti-plus" style="font-size:13px;color:var(--tm)"></i><span style="font-size:10px;color:var(--tm)">Add day</span></div>
+              </div>
+            </div>
+            <div class="map-ph" style="min-height:180px;border-radius:9px;border:1px solid var(--bd)">
+              <i class="ti ti-map" style="font-size:32px"></i>
+              <span>Route auto-plots as you add stops</span>
+              <div style="display:flex;gap:4px;margin-top:4px"><div style="width:8px;height:8px;border-radius:50%;background:var(--maroon)"></div><div style="width:24px;height:2px;background:var(--bds);margin:3px 0"></div><div style="width:8px;height:8px;border-radius:50%;background:var(--lime)"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left;margin-bottom:18px">Organizer — itinerary builder</div>
+
+  <!-- Participants -->
+  <div id="org-participants" class="web" style="margin-bottom:16px">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/organizer/trips/3/participants</span></div></div>
+    <div class="wl">
+      <div class="wl-side">
+        <div class="wl-logo">rah-e-ravaan<small>organizer portal</small></div>
+        <div class="si"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+        <div class="si"><i class="ti ti-map-route"></i>Itineraries</div>
+        <div class="si on"><i class="ti ti-users"></i>Participants</div>
+        <div class="si"><i class="ti ti-map-pin"></i>GPS tracking</div>
+        <div class="si"><i class="ti ti-chart-bar"></i>Analytics</div>
+        <div class="si"><i class="ti ti-school"></i>Domain</div>
+      </div>
+      <div class="wl-main">
+        <div class="wtb"><div class="wtb-title">Participants — FAST Winter Trek 2025</div><div style="display:flex;gap:7px"><div class="btn"><i class="ti ti-speakerphone"></i>Announce</div><div class="btn"><i class="ti ti-download"></i>Export CSV</div></div></div>
+        <div class="wc">
+          <div style="display:flex;gap:8px;margin-bottom:11px">
+            <div style="padding:4px 10px;background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);font-size:11px;color:var(--ts)">All (18)</div>
+            <div style="padding:4px 10px;background:var(--suc);border:1px solid var(--sucb);border-radius:var(--r);font-size:11px;color:var(--suct);font-weight:700">Confirmed (14)</div>
+            <div style="padding:4px 10px;background:var(--wrn);border:1px solid var(--wrnb);border-radius:var(--r);font-size:11px;color:var(--wrnt);font-weight:700">Pending (4)</div>
+          </div>
+          <table class="dt">
+            <thead><tr><th>Name</th><th>Email</th><th>Domain verified</th><th>GPS consent</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>Sara Khan</td><td style="font-family:monospace;font-size:10px">sara@nu.edu.pk</td><td><span class="st ok">✓ Verified</span></td><td><span class="st ok">✓ Yes</span></td><td><span class="st ok">Confirmed</span></td><td><div class="btn" style="padding:0 7px"><i class="ti ti-eye"></i></div></td></tr>
+              <tr><td>Ahmed Raza</td><td style="font-family:monospace;font-size:10px">ahmed@nu.edu.pk</td><td><span class="st ok">✓ Verified</span></td><td><span class="st pnd">No</span></td><td><span class="st pnd">Pending</span></td><td style="display:flex;gap:4px"><div class="btn" style="padding:0 7px"><i class="ti ti-check"></i></div><div class="btn" style="padding:0 7px"><i class="ti ti-x"></i></div></td></tr>
+              <tr><td>Zara Malik</td><td style="font-family:monospace;font-size:10px">zara@nu.edu.pk</td><td><span class="st ok">✓ Verified</span></td><td><span class="st ok">✓ Yes</span></td><td><span class="st ok">Confirmed</span></td><td><div class="btn" style="padding:0 7px"><i class="ti ti-eye"></i></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left;margin-bottom:18px">Organizer — participant management</div>
+
+  <!-- GPS tracking organizer -->
+  <div id="org-tracking" class="web">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/organizer/trips/3/tracking</span></div></div>
+    <div class="wl">
+      <div class="wl-side">
+        <div class="wl-logo">rah-e-ravaan<small>organizer portal</small></div>
+        <div class="si"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+        <div class="si"><i class="ti ti-map-route"></i>Itineraries</div>
+        <div class="si"><i class="ti ti-users"></i>Participants</div>
+        <div class="si on"><i class="ti ti-map-pin"></i>GPS tracking</div>
+        <div class="si"><i class="ti ti-chart-bar"></i>Analytics</div>
+        <div class="si"><i class="ti ti-school"></i>Domain</div>
+      </div>
+      <div class="wl-main">
+        <div class="wtb"><div class="wtb-title">Group GPS tracking — FAST Winter Trek 2025</div><div style="padding:4px 10px;background:var(--wrn);border-radius:4px;font-size:11px;color:var(--wrnt);font-weight:700;display:flex;align-items:center;gap:5px"><i class="ti ti-wifi-off" style="font-size:13px"></i>2 devices offline</div></div>
+        <div class="wc" style="display:grid;grid-template-columns:1fr 240px;gap:14px">
+          <div class="map-ph" style="min-height:220px;border-radius:9px;border:1px solid var(--bd)">
+            <i class="ti ti-map"></i><span>Live group map</span>
+            <div class="map-pin" style="top:30%;left:35%"></div>
+            <div class="map-pin" style="top:42%;left:50%"></div>
+            <div class="map-pin2" style="top:38%;left:58%"></div>
+            <div style="position:absolute;top:10px;left:10px;background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:5px 8px;font-size:9px;display:flex;flex-direction:column;gap:2px">
+              <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:var(--maroon)"></div><span style="color:var(--tp)">Live (16)</span></div>
+              <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:var(--tm)"></div><span style="color:var(--tm)">Offline (2)</span></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:11px;font-weight:700;color:var(--ts)">Participants (18)</div>
+            <div style="padding:7px 9px;background:var(--suc);border:1px solid var(--sucb);border-radius:7px;display:flex;align-items:center;gap:7px"><i class="ti ti-map-pin" style="font-size:14px;color:var(--suct)"></i><div><div style="font-size:10px;font-weight:700;color:var(--suct)">Sara Khan</div><div style="font-size:8px;color:var(--suct)">Near Karimabad · 2 min ago</div></div></div>
+            <div style="padding:7px 9px;background:var(--wrn);border:1px solid var(--wrnb);border-radius:7px;display:flex;align-items:center;gap:7px"><i class="ti ti-wifi-off" style="font-size:14px;color:var(--wrnt)"></i><div><div style="font-size:10px;font-weight:700;color:var(--wrnt)">Ahmed Raza</div><div style="font-size:8px;color:var(--wrnt)">Last seen 48 min ago · Hopar Valley</div></div></div>
+            <div style="padding:7px 9px;background:var(--suc);border:1px solid var(--sucb);border-radius:7px;display:flex;align-items:center;gap:7px"><i class="ti ti-map-pin" style="font-size:14px;color:var(--suct)"></i><div><div style="font-size:10px;font-weight:700;color:var(--suct)">Zara Malik</div><div style="font-size:8px;color:var(--suct)">Near Attabad · 5 min ago</div></div></div>
+            <div style="font-size:9px;color:var(--tm);text-align:center">+ 15 more participants</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left">Organizer — group GPS tracking (store-and-forward)</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ADMIN CONSOLE -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="admin-dash" class="doc-section">
+  <div class="section-eyebrow">Portal 3 · Admin · Web</div>
+  <div class="section-title">Admin console (/admin, 2FA required)</div>
+  <div class="section-rule"></div>
+  <div class="section-desc">Internal tool for platform operators. Secure login with mandatory TOTP, 30-minute session timeout. Handles organizer approvals, domain registry, content moderation, payments, and system config. Full audit log on every admin action.</div>
+  <div class="role-badge role-admin"><div class="dot dot-admin"></div>Admin</div>
+
+  <!-- Admin dashboard -->
+  <div class="web" style="margin-bottom:16px">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/admin</span></div></div>
+    <div class="wl">
+      <div class="wl-side">
+        <div class="wl-logo">rah-e-ravaan<small>admin console</small></div>
+        <div class="si on"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+        <div class="si"><i class="ti ti-users"></i>Users</div>
+        <div class="si"><i class="ti ti-briefcase"></i>Organizers</div>
+        <div class="si"><i class="ti ti-shield"></i>Moderation</div>
+        <div class="si"><i class="ti ti-map-2"></i>Destinations</div>
+        <div class="si"><i class="ti ti-credit-card"></i>Payments</div>
+        <div class="si"><i class="ti ti-school"></i>Domains</div>
+        <div class="si"><i class="ti ti-adjustments"></i>System</div>
+        <div class="si"><i class="ti ti-clipboard-list"></i>Audit log</div>
+      </div>
+      <div class="wl-main">
+        <div class="wtb">
+          <div class="wtb-title">Platform overview</div>
+          <div style="padding:4px 10px;background:var(--dng);border-radius:4px;font-size:11px;color:var(--dngt);font-weight:700;display:flex;align-items:center;gap:5px"><i class="ti ti-alert-triangle" style="font-size:13px"></i>3 pending approvals</div>
+        </div>
+        <div class="wc">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:14px">
+            <div class="stat-card"><div class="sv">12,440</div><div class="sl">Total users</div></div>
+            <div class="stat-card"><div class="sv">3,812</div><div class="sl">MAU</div></div>
+            <div class="stat-card"><div class="sv">47</div><div class="sl">Active organizers</div></div>
+            <div class="stat-card"><div class="sv">Rs 2.4M</div><div class="sl">Gross revenue</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:700;margin-bottom:7px">Alerts requiring action</div>
+          <div class="ar w"><i class="ti ti-building-store" style="color:var(--wrnt)"></i><div class="ar-msg"><b>3 organizer applications</b> pending review</div><div class="btn" style="margin-left:auto;font-size:10px">Review</div></div>
+          <div class="ar w"><i class="ti ti-flag" style="color:var(--wrnt)"></i><div class="ar-msg"><b>2 itineraries</b> flagged by users for inaccurate info</div><div class="btn" style="margin-left:auto;font-size:10px">Review</div></div>
+          <div class="ar a"><i class="ti ti-credit-card" style="color:var(--acct)"></i><div class="ar-msg">Payment dispute raised for booking <b>#PKR-8821</b></div><div class="btn" style="margin-left:auto;font-size:10px">View</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left;margin-bottom:18px">Admin — platform dashboard</div>
+
+  <!-- Organizer approval -->
+  <div id="admin-organizers" class="web" style="margin-bottom:16px">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/admin/organizers/pending</span></div></div>
+    <div class="wl">
+      <div class="wl-side">
+        <div class="wl-logo">rah-e-ravaan<small>admin console</small></div>
+        <div class="si"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+        <div class="si"><i class="ti ti-users"></i>Users</div>
+        <div class="si on"><i class="ti ti-briefcase"></i>Organizers</div>
+        <div class="si"><i class="ti ti-shield"></i>Moderation</div>
+        <div class="si"><i class="ti ti-map-2"></i>Destinations</div>
+        <div class="si"><i class="ti ti-credit-card"></i>Payments</div>
+        <div class="si"><i class="ti ti-school"></i>Domains</div>
+        <div class="si"><i class="ti ti-adjustments"></i>System</div>
+        <div class="si"><i class="ti ti-clipboard-list"></i>Audit log</div>
+      </div>
+      <div class="wl-main">
+        <div class="wtb"><div class="wtb-title">Organizer approval queue</div></div>
+        <div class="wc">
+          <div class="org-card">
+            <div class="oc-head">
+              <div class="oc-av">FA</div>
+              <div><div style="font-size:12px;font-weight:700">FAST Adventure Society</div><div style="font-size:10px;color:var(--ts)">Institutional trip committee · FAST-NUCES Karachi</div><div style="font-size:10px;color:var(--acct);font-family:monospace;margin-top:2px">@nu.edu.pk</div></div>
+              <div style="margin-left:auto"><span class="st pnd">Pending</span></div>
+            </div>
+            <div style="font-size:10px;color:var(--ts);margin-bottom:9px">Applied 2 days ago · Contact: adventures@nu.edu.pk</div>
+            <div style="padding:7px 9px;background:var(--s0);border-radius:7px;font-size:10px;color:var(--ts);margin-bottom:9px"><b>Requested domain:</b> nu.edu.pk &nbsp;·&nbsp; <b>Type:</b> University committee &nbsp;·&nbsp; <b>Institution:</b> FAST-NUCES</div>
+            <div style="display:flex;gap:7px">
+              <div class="btn p"><i class="ti ti-check"></i>Approve + set domain</div>
+              <div class="btn" style="color:var(--dngt);border-color:var(--dngb)"><i class="ti ti-x"></i>Reject</div>
+              <div class="btn"><i class="ti ti-file"></i>View documents</div>
+            </div>
+          </div>
+          <div class="org-card">
+            <div class="oc-head">
+              <div class="oc-av" style="background:var(--suc);color:var(--suct)">PT</div>
+              <div><div style="font-size:12px;font-weight:700">PakTours Pvt Ltd</div><div style="font-size:10px;color:var(--ts)">Travel agency · Lahore · TDAP-2024-0392</div></div>
+              <div style="margin-left:auto"><span class="st pnd">Pending</span></div>
+            </div>
+            <div style="font-size:10px;color:var(--ts);margin-bottom:9px">Applied 5 days ago · License verified</div>
+            <div style="display:flex;gap:7px">
+              <div class="btn p"><i class="ti ti-check"></i>Approve</div>
+              <div class="btn" style="color:var(--dngt);border-color:var(--dngb)"><i class="ti ti-x"></i>Reject</div>
+              <div class="btn"><i class="ti ti-file"></i>View documents</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left;margin-bottom:18px">Admin — organizer approval queue</div>
+
+  <!-- Domain registry -->
+  <div id="admin-domains" class="web">
+    <div class="web-bar"><div class="wd" style="background:#ff5f57"></div><div class="wd" style="background:#febc2e"></div><div class="wd" style="background:#28c840"></div><div class="web-url"><span>rah-e-ravaan.pk/admin/domains</span></div></div>
+    <div class="wl">
+      <div class="wl-side">
+        <div class="wl-logo">rah-e-ravaan<small>admin console</small></div>
+        <div class="si"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+        <div class="si"><i class="ti ti-users"></i>Users</div>
+        <div class="si"><i class="ti ti-briefcase"></i>Organizers</div>
+        <div class="si"><i class="ti ti-shield"></i>Moderation</div>
+        <div class="si"><i class="ti ti-map-2"></i>Destinations</div>
+        <div class="si"><i class="ti ti-credit-card"></i>Payments</div>
+        <div class="si on"><i class="ti ti-school"></i>Domains</div>
+        <div class="si"><i class="ti ti-adjustments"></i>System</div>
+        <div class="si"><i class="ti ti-clipboard-list"></i>Audit log</div>
+      </div>
+      <div class="wl-main">
+        <div class="wtb"><div class="wtb-title">Institution domain registry</div><div class="btn p"><i class="ti ti-plus"></i>Add institution</div></div>
+        <div class="wc">
+          <div class="search-bar" style="margin-bottom:11px"><i class="ti ti-search"></i><span>Search by domain or institution name…</span></div>
+          <table class="dt">
+            <thead><tr><th>Institution</th><th>Domain</th><th>Type</th><th>Organizer account</th><th>Students verified</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>FAST-NUCES</td><td style="font-family:monospace;font-size:10px">nu.edu.pk</td><td>University</td><td>FAST Adventure Society</td><td>328</td><td><span class="st ok">Active</span></td></tr>
+              <tr><td>LUMS</td><td style="font-family:monospace;font-size:10px">lums.edu.pk</td><td>University</td><td>LUMS Mountaineers</td><td>91</td><td><span class="st ok">Active</span></td></tr>
+              <tr><td>NUST</td><td style="font-family:monospace;font-size:10px">nust.edu.pk</td><td>University</td><td style="color:var(--tm);font-size:10px">None linked</td><td>0</td><td><span class="st pnd">Inactive</span></td></tr>
+              <tr><td>Aga Khan Univ.</td><td style="font-family:monospace;font-size:10px">aku.edu</td><td>University</td><td style="color:var(--tm);font-size:10px">Pending review</td><td>0</td><td><span class="st pnd">Pending</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-label" style="text-align:left">Admin — institution domain registry</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- PARITY NOTE -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="parity" class="doc-section">
+  <div class="section-eyebrow">Design notes</div>
+  <div class="section-title">Web ↔ mobile parity</div>
+  <div class="section-rule"></div>
+  <div class="parity-box">
+    <i class="ti ti-device-mobile big"></i>
+    <div style="flex:1">
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px">What's shared and what's platform-specific</div>
+      <div class="parity-grid">
+        <div class="parity-row"><i class="ti ti-check" style="color:var(--suct)"></i>Same account — login once, works on web and Flutter app</div>
+        <div class="parity-row"><i class="ti ti-check" style="color:var(--suct)"></i>AI planner on both; web adds side-by-side itinerary panel</div>
+        <div class="parity-row"><i class="ti ti-device-mobile" style="color:var(--wrnt)"></i>Offline GPS logging + SQLite — mobile (Flutter) only</div>
+        <div class="parity-row"><i class="ti ti-check" style="color:var(--suct)"></i>Parent breadcrumb trail readable on web (no offline needed)</div>
+        <div class="parity-row"><i class="ti ti-check" style="color:var(--suct)"></i>Bookings, payments, enrollment — full feature parity on both</div>
+        <div class="parity-row"><i class="ti ti-check" style="color:var(--suct)"></i>Mapbox tiles shared — React (web) + Flutter (mobile) same source</div>
+        <div class="parity-row"><i class="ti ti-device-mobile" style="color:var(--wrnt)"></i>Background location service and GPS tracking — mobile only</div>
+        <div class="parity-row"><i class="ti ti-check" style="color:var(--suct)"></i>Organizer and admin portals — web only (no mobile view)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+// Highlight active sidebar item on scroll
+const sections = document.querySelectorAll('.doc-section, #auth, #cover');
+const navItems = document.querySelectorAll('.doc-nav-item');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navItems.forEach(n => n.classList.remove('active'));
+      const id = e.target.id;
+      const match = document.querySelector(`.doc-nav-item[href="#${id}"]`);
+      if (match) match.classList.add('active');
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('[id]').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
