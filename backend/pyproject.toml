@@ -6,6 +6,13 @@ requires-python = ">=3.11"
 dependencies = [
     "fastapi",
     "uvicorn[standard]",
+    "python-dotenv",
+    "pydantic-settings",
+    "psycopg2-binary",
+    "redis",
+    "qdrant-client",
+    "sqlalchemy",
+    "asyncpg",
 ]
 
 [tool.uvicorn]
