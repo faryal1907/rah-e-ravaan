@@ -2,16 +2,33 @@
 
 ## Branch Naming
 
-Use the following format:
+Every branch maps to exactly one Jira story. Use the following format:
 
-- `main` — stable code
-- `feature/<short-description>` — new features
-- `fix/<short-description>` — bug fixes
-- `chore/<short-description>` — setup and maintenance
+```
+<type>/RER-<ticket>-<short-description>
+```
 
-Example:
+| Type | When to use |
+|------|-------------|
+| `feat` | New feature or user-facing behaviour |
+| `fix` | Bug fix |
+| `chore` | Tooling, config, dependencies, CI |
+| `docs` | Documentation only |
 
-`feature/user-authentication`
+Examples:
+
+```
+feat/RER-26-customer-signup
+fix/RER-30-jwt-refresh-rotation
+chore/RER-20-branch-protection
+docs/RER-100-architecture-doc
+```
+
+**Rules:**
+- One branch per story — all commits for that story go on the same branch.
+- Branch off `main` only. Never branch off another feature branch.
+- Direct pushes to `main` are blocked. Every change must go through a pull request — even small ones.
+- Keep branches short-lived: open a PR within 2–3 days of starting work and merge before the sprint ends.
 
 ## Commits
 
@@ -30,12 +47,32 @@ Examples:
 
 ## Pull Requests
 
-- Create a branch from `main`.
-- Keep PRs focused on one change.
-- Explain what was changed.
-- Mention related Jira ticket(s).
-- Ensure tests and checks pass before requesting review.
-- At least one team member should review the PR before merging.
+### Opening a PR
+
+1. Push your branch and go to `https://github.com/faryal1907/rah-e-ravaan/compare/main...<your-branch>`.
+2. The description box will be **automatically pre-filled** with the PR template — fill in every section before submitting.
+3. Set the base branch to `main`.
+4. Request a review from at least one teammate. CODEOWNERS will auto-assign the right reviewer based on which files you changed.
+5. Wait for CI checks to pass and at least 1 approval before merging.
+
+### PR Template Sections
+
+Every PR must complete all five sections:
+
+| Section | What to write |
+|---------|--------------|
+| **What** | One or two sentences describing the change. What does this PR do? |
+| **Why** | The motivation. Reference the Jira ticket — e.g. `Closes #RER-26`. |
+| **Testing Done** | Commands you ran, API calls you made, devices you tested on. Tick the checkboxes that apply. |
+| **Screenshots** | Before/after screenshots or a short recording for any UI change (web or Flutter). Leave blank for backend-only PRs. |
+| **Checklist** | Tick every item that applies. Do not submit with unchecked items you have not thought about. |
+
+### Rules
+
+- One PR per story — scope it to the Jira ticket it implements.
+- Keep PRs focused: avoid bundling unrelated fixes or refactors.
+- Do not commit secrets, API keys, or credentials. Add new variables to `.env.example` instead.
+- Do not merge your own PR without a review unless explicitly agreed for a hotfix.
 
 ## Code Quality
 
