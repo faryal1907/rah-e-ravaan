@@ -1,0 +1,39 @@
+# CODEOWNERS
+# GitHub uses this file to automatically request reviews when a PR touches the listed paths.
+# Rules are evaluated top-to-bottom; the LAST matching rule wins.
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# ── Catch-all ────────────────────────────────────────────────────────────────
+# Any file not matched by a more specific rule below is owned by the lead.
+# Add teammates here as the team grows: @username1 @username2
+*                           @faryal1907
+
+# ── Backend ──────────────────────────────────────────────────────────────────
+# FastAPI app, database models, services, migrations, scripts.
+# Replace @faryal1907 with the backend engineer's handle when assigned.
+/backend/                   @faryal1907
+
+# ── Mobile ───────────────────────────────────────────────────────────────────
+# Flutter app — features, core, offline, GPS tracking.
+# Replace @faryal1907 with the mobile engineer's handle when assigned.
+/mobile/                    @faryal1907
+
+# ── Web ──────────────────────────────────────────────────────────────────────
+# React/Vite frontend — customer, organizer, and admin portals.
+# Replace @faryal1907 with the web engineer's handle when assigned.
+/web/                       @faryal1907
+
+# ── DevOps / Infrastructure ──────────────────────────────────────────────────
+# Docker Compose, environment config, and root-level infra files.
+docker-compose.yml          @faryal1907
+.env.example                @faryal1907
+
+# ── GitHub Config & CI/CD ────────────────────────────────────────────────────
+# PR template, issue templates, GitHub Actions workflows, CODEOWNERS itself.
+# Changes here affect the whole team's workflow — keep all leads as owners.
+/.github/                   @faryal1907
+
+# ── Documentation ────────────────────────────────────────────────────────────
+/docs/                      @faryal1907
+/CONTRIBUTING.md            @faryal1907
+/README.md                  @faryal1907
